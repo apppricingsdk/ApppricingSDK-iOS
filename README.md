@@ -32,12 +32,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private let apiKey = "YOUR_API_KEY"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        AppPricingInstance.initialize(apiKey: apiKey)
-
+        AppPricingInstance.initialize(
+            apiKey: apiKey, // Required: Your API key from AppPricing Dashboard
+            isDebug: true, // Optional: Enable debug mode for development
+            errorCallback: { error in // Optional: Handle SDK Errors
+                print(error.localizedDescription)
+            }, logCallback: { logMessage in // Optional: Handle SDK logs
+                print(logMessage)
+            }
+        )
+        
         return true
-    }
-}
-```
+    }```
 
 ## Support
 

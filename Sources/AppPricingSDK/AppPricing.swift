@@ -6,15 +6,15 @@ class AppPricing {
         self.apiProvider = APIProvider(apiKey: apiKey)
     }
     
-    func postDeviceData() async throws {
+    func postDeviceData() async throws -> DeviceDataResponse {
         let deviceID = secureDataStore.getDeviceID()
         let deviceData = await DeviceDataCollector.collect(deviceID: deviceID)
-        let deviceDataResponse = try await apiProvider.postDeviceData(deviceData)
+        return try await apiProvider.postDeviceData(deviceData)
     }
     
-    func postPageRequest(pageName: String) async throws {
+    func postPageRequest(pageName: String) async throws -> PagesResponse {
         let deviceID = secureDataStore.getDeviceID()
-        try await apiProvider.postPagesRequest(deviceID: deviceID, pageName: pageName)
+        return try await apiProvider.postPagesRequest(deviceID: deviceID, pageName: pageName)
     }
     
     func getDevicePlans() async throws -> [DevicePlan] {
