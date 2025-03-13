@@ -43,7 +43,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         )
         
         return true
-    }```
+    }
+```
 
 ## Support
 
